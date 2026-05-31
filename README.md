@@ -72,6 +72,8 @@ hibernate.show_sql=true
 
 Este proyecto permite aplicar los conceptos fundamentales de persistencia de datos en Java utilizando JPA y Hibernate, integrando una base de datos relacional y una estructura organizada de acceso a datos mediante repositorios.
 
+## Video Explicativo
 
+YT: https://youtu.be/555zicaavVs
 
 
