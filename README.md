@@ -1,56 +1,77 @@
-# Evaluación Parcial - Java Persistence API (JPA)
+````md
+# Evaluación Parcial – Java Persistence API (JPA)
 
-Descripción breve
-- Proyecto de ejemplo para gestionar categorías y productos usando JPA (Hibernate) y base de datos H2 en modo archivo. Contiene una consola interactiva con la clase principal `com.tp.jpa.Main` y repositorios simples para `Categoria` y `Producto`.
+**Materia:** Programación III  
+**Estudiante:** Gabriel Etchegoyen  
+**Legajo:** 18756
 
-Requisitos
+## Introducción
+
+El presente proyecto fue desarrollado utilizando **Java Persistence API (JPA)** con **Hibernate** como proveedor de persistencia y **H2 Database** como sistema de almacenamiento de datos. La aplicación permite administrar categorías y productos mediante una interfaz de consola, implementando operaciones básicas de persistencia y consulta.
+
+## Requisitos
+
+Para ejecutar el proyecto se requiere:
+
 - JDK 17 o superior.
-- Gradle wrapper incluido (`gradlew`, `gradlew.bat`).
+- Gradle Wrapper incluido en el proyecto.
+- Un entorno de desarrollo compatible con Java (IntelliJ IDEA, Eclipse o Visual Studio Code).
 
-Instrucciones para ejecutarlo
+## Ejecución del Proyecto
 
-1) Desde un IDE (recomendado)
-- Abra el proyecto en su IDE (IntelliJ IDEA, Eclipse o VS Code con soporte Java).
-- Ejecute la clase `com.tp.jpa.Main` como una aplicación Java.
+Se recomienda abrir el proyecto en un entorno de desarrollo integrado (IDE) y ejecutar la clase principal:
 
-2) Desde línea de comandos (Windows)
-- Compilar:
+```java
+com.tp.jpa.Main
+````
 
-```powershell
-.\gradlew.bat clean build
+## Configuración de la Base de Datos
+
+La configuración de persistencia se encuentra en el archivo:
+
+```text
+src/main/resources/META-INF/persistence.xml
 ```
 
-- Ejecutar (opción A — desde clases compiladas):
+La aplicación utiliza una base de datos H2 en modo archivo. La URL de conexión configurada actualmente es:
 
-```powershell
-java -cp build\classes\java\main;build\resources\main;libs\* com.tp.jpa.Main
+```text
+jdbc:h2:file:~/data/mydb;AUTO_SERVER=true
 ```
 
-- Ejecutar (opción B — agregar plugin `application` si desea usar `gradlew run`). Si lo prefiere, puedo agregar esa tarea para facilitar la ejecución.
+### Consideraciones
 
-Base de datos (H2)
-- Archivo de configuración: [src/main/resources/META-INF/persistence.xml](src/main/resources/META-INF/persistence.xml#L1-L40).
-- URL por defecto actual: `jdbc:h2:file:~/data/mydb;AUTO_SERVER=true`.
-	- Nota: `~` se resuelve al directorio home del usuario (por ejemplo `C:\Users\gabri\data\mydb.*`). Si usted espera usar los archivos `data/mydb.*` dentro del proyecto, H2 no los encontrará mientras la URL use `~`.
-- Opciones:
-	- Usar la carpeta `data` del proyecto: cambiar la URL a `jdbc:h2:file:./data/mydb`.
-	- Usar ruta absoluta: `jdbc:h2:file:C:/ruta/completa/a/proyecto/data/mydb`.
-- Archivo `.lock.db`: si aparece `data/mydb.lock.db` significa que otra instancia tiene la DB abierta; cierre otras instancias (IDE, servidor o procesos H2) antes de ejecutar.
+* El símbolo `~` representa el directorio personal del usuario que ejecuta la aplicación.
+* Si se desea utilizar una base de datos almacenada dentro del proyecto, la URL puede modificarse para apuntar a la carpeta correspondiente.
+* En caso de existir un archivo `.lock.db`, deberá verificarse que no haya otra instancia de la aplicación utilizando la misma base de datos.
 
-Depuración y logs
-- Para ver las sentencias SQL en consola, en `persistence.xml` cambie `hibernate.show_sql` a `true`.
+## Depuración
 
-Archivos importantes
-- `src/main/java/com/tp/jpa/Main.java`: punto de entrada de la aplicación.
-- `src/main/resources/META-INF/persistence.xml`: configuración de JPA/Hibernate y URL de conexión.
+Para visualizar las sentencias SQL generadas por Hibernate durante la ejecución, puede habilitarse la siguiente propiedad en el archivo `persistence.xml`:
 
-Recomendaciones finales
-- Si desea, puedo:
-	- Actualizar `persistence.xml` para apuntar por defecto a `./data/mydb` (usa la carpeta del proyecto).
-	- Agregar el plugin `application` en `build.gradle` para permitir `gradlew run`.
-	- Generar un `fat-jar` ejecutable.
+```xml
+hibernate.show_sql=true
+```
 
-Materia: Programación III
-Estudiante: Etchegoyen Gabriel
-Legajo: 18756
+## Estructura Principal del Proyecto
+
+| Archivo                                       | Descripción                                                    |
+| --------------------------------------------- | -------------------------------------------------------------- |
+| `src/main/java/com/tp/jpa/Main.java`          | Punto de entrada de la aplicación.                             |
+| `src/main/resources/META-INF/persistence.xml` | Configuración de JPA, Hibernate y conexión a la base de datos. |
+
+## Funcionalidades Implementadas
+
+* Gestión de categorías.
+* Gestión de productos.
+* Persistencia de datos mediante JPA e Hibernate.
+* Almacenamiento utilizando H2 Database.
+* Interacción mediante consola.
+
+## Conclusión
+
+Este proyecto permite aplicar los conceptos fundamentales de persistencia de datos en Java utilizando JPA y Hibernate, integrando una base de datos relacional y una estructura organizada de acceso a datos mediante repositorios.
+
+```
+```
 
